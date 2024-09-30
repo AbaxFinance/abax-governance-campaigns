@@ -1,0 +1,42 @@
+type Owner @entity {
+  id: ID!
+  balance: BigInt!
+}
+
+type Transfer @entity {
+  id: ID!
+  from: Owner
+  to: Owner
+  amount: BigInt!
+  timestamp: DateTime!
+  block: Int!
+  extrinsicHash: String!
+}
+
+type Proposal @entity {
+  id: ID!
+  transactions: [Transaction!]!
+  descriptionHash: String!
+  descriptionUrl: String!
+  earliestExecution: DateTime
+}
+
+type Transaction @entity {
+  id: ID!
+  proposal: Proposal!
+  callee: Owner!
+  selector: String!
+  input: String!
+  transferredValue: BigInt!
+}
+
+type Query {
+  owner(id: ID!): Owner
+  owners: [Owner!]!
+  transfer(id: ID!): Transfer
+  transfers: [Transfer!]!
+  proposal(id: ID!): Proposal
+  proposals: [Proposal!]!
+  transaction(id: ID!): Transaction
+  transactions: [Transaction!]!
+}

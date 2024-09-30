@@ -1,0 +1,158 @@
+{"level":2,"time":1722426468175,"ns":"sqd:commands","msg":"CLEAN"}
+{"level":2,"time":1722426469127,"ns":"sqd:commands","msg":"BUILD"}
+{"level":2,"time":1722426473841,"ns":"sqd:commands","msg":"MIGRATION:APPLY"}
+query: SELECT * FROM current_schema()
+query: SELECT version();
+query: SELECT * FROM "information_schema"."tables" WHERE "table_schema" = 'public' AND "table_name" = 'migrations'
+query: CREATE TABLE "migrations" ("id" SERIAL NOT NULL, "timestamp" bigint NOT NULL, "name" character varying NOT NULL, CONSTRAINT "PK_8c82d7f526340ab734260ea46be" PRIMARY KEY ("id"))
+query: SELECT * FROM "migrations" "migrations" ORDER BY "id" DESC
+0 migrations are already loaded in the database.
+1 migrations were found in the source code.
+1 migrations are new migrations must be executed.
+query: START TRANSACTION
+query: CREATE TABLE "owner" ("id" character varying NOT NULL, "balance" numeric NOT NULL, CONSTRAINT "PK_8e86b6b9f94aece7d12d465dc0c" PRIMARY KEY ("id"))
+query: CREATE TABLE "transfer" ("id" character varying NOT NULL, "amount" numeric NOT NULL, "timestamp" TIMESTAMP WITH TIME ZONE NOT NULL, "block" integer NOT NULL, "extrinsic_hash" text NOT NULL, "from_id" character varying, "to_id" character varying, CONSTRAINT "PK_fd9ddbdd49a17afcbe014401295" PRIMARY KEY ("id"))
+query: CREATE INDEX "IDX_76bdfed1a7eb27c6d8ecbb7349" ON "transfer" ("from_id") 
+query: CREATE INDEX "IDX_0751309c66e97eac9ef1149362" ON "transfer" ("to_id") 
+query: ALTER TABLE "transfer" ADD CONSTRAINT "FK_76bdfed1a7eb27c6d8ecbb73496" FOREIGN KEY ("from_id") REFERENCES "owner"("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+query: ALTER TABLE "transfer" ADD CONSTRAINT "FK_0751309c66e97eac9ef11493623" FOREIGN KEY ("to_id") REFERENCES "owner"("id") ON DELETE NO ACTION ON UPDATE NO ACTION
+query: INSERT INTO "migrations"("timestamp", "name") VALUES ($1, $2) -- PARAMETERS: [1698062456555,"Data1698062456555"]
+Migration Data1698062456555 has been  executed successfully.
+query: COMMIT
+{"level":2,"time":1722426475274,"ns":"sqd:commands","msg":"PROCESS"}
+{"level":2,"time":1722426477486,"ns":"sqd:processor","msg":"processing blocks from 85672500"}
+{"level":2,"time":1722426477687,"ns":"sqd:processor","msg":"using archive data source"}
+{"level":2,"time":1722426477694,"ns":"sqd:processor","msg":"prometheus metrics are served at port 43375"}
+{"level":2,"time":1722426477737,"ns":"sqd:processor","msg":"using chain RPC data source"}
+{"level":2,"time":1722426480871,"ns":"sqd:processor","msg":"85672509 / 85676446, rate: 3 blocks/sec, mapping: 427 blocks/sec, 43 items/sec, eta: 24m"}
+Found 1 transfers
+Total amount transferred from 5GYzVsZtDfD7zLbCbXcYk5bofmNfgG7U56dhcyHCWMu4GaNf: 7683.337385 USDC
+{"level":2,"time":1722426485873,"ns":"sqd:processor","msg":"85672719 / 85676446, rate: 27 blocks/sec, mapping: 894 blocks/sec, 125 items/sec, eta: 3m"}
+{"level":2,"time":1722426490873,"ns":"sqd:processor","msg":"85672919 / 85676446, rate: 32 blocks/sec, mapping: 1017 blocks/sec, 102 items/sec, eta: 2m"}
+Found 1 transfers
+Total amount transferred from 5GYzVsZtDfD7zLbCbXcYk5bofmNfgG7U56dhcyHCWMu4GaNf: 7683.337385 USDC
+Found 1 transfers
+Total amount transferred from 5GYzVsZtDfD7zLbCbXcYk5bofmNfgG7U56dhcyHCWMu4GaNf: 12560.638484 USDC
+{"level":2,"time":1722426495874,"ns":"sqd:processor","msg":"85673099 / 85676446, rate: 38 blocks/sec, mapping: 870 blocks/sec, 174 items/sec, eta: 2m"}
+Found 1 transfers
+Total amount transferred from 5GYzVsZtDfD7zLbCbXcYk5bofmNfgG7U56dhcyHCWMu4GaNf: 17497.015808 USDC
+Found 1 transfers
+Total amount transferred from 5GYzVsZtDfD7zLbCbXcYk5bofmNfgG7U56dhcyHCWMu4GaNf: 22493.532621 USDC
+{"level":2,"time":1722426500874,"ns":"sqd:processor","msg":"85673279 / 85676466, rate: 38 blocks/sec, mapping: 1108 blocks/sec, 111 items/sec, eta: 2m"}
+{"level":2,"time":1722426505874,"ns":"sqd:processor","msg":"85673459 / 85676466, rate: 37 blocks/sec, mapping: 995 blocks/sec, 279 items/sec, eta: 2m"}
+{"level":2,"time":1722426510875,"ns":"sqd:processor","msg":"85673639 / 85676466, rate: 38 blocks/sec, mapping: 1066 blocks/sec, 107 items/sec, eta: 2m"}
+{"level":2,"time":1722426515876,"ns":"sqd:processor","msg":"85673819 / 85676466, rate: 38 blocks/sec, mapping: 320 blocks/sec, 38 items/sec, eta: 2m"}
+{"level":2,"time":1722426520877,"ns":"sqd:processor","msg":"85673999 / 85676487, rate: 38 blocks/sec, mapping: 831 blocks/sec, 116 items/sec, eta: 2m"}
+{"level":2,"time":1722426525877,"ns":"sqd:processor","msg":"85674179 / 85676487, rate: 38 blocks/sec, mapping: 464 blocks/sec, 46 items/sec, eta: 2m"}
+{"level":2,"time":1722426530878,"ns":"sqd:processor","msg":"85674359 / 85676487, rate: 37 blocks/sec, mapping: 910 blocks/sec, 109 items/sec, eta: 58s"}
+{"level":2,"time":1722426535878,"ns":"sqd:processor","msg":"85674539 / 85676487, rate: 37 blocks/sec, mapping: 655 blocks/sec, 66 items/sec, eta: 53s"}
+{"level":2,"time":1722426540879,"ns":"sqd:processor","msg":"85674719 / 85676507, rate: 37 blocks/sec, mapping: 770 blocks/sec, 123 items/sec, eta: 48s"}
+{"level":2,"time":1722426545880,"ns":"sqd:processor","msg":"85674899 / 85676507, rate: 37 blocks/sec, mapping: 613 blocks/sec, 196 items/sec, eta: 43s"}
+{"level":2,"time":1722426550882,"ns":"sqd:processor","msg":"85675079 / 85676507, rate: 38 blocks/sec, mapping: 367 blocks/sec, 81 items/sec, eta: 38s"}
+{"level":2,"time":1722426555883,"ns":"sqd:processor","msg":"85675259 / 85676507, rate: 37 blocks/sec, mapping: 637 blocks/sec, 102 items/sec, eta: 34s"}
+Found 1 transfers
+Total amount transferred from 5GYzVsZtDfD7zLbCbXcYk5bofmNfgG7U56dhcyHCWMu4GaNf: 26376.947722 USDC
+{"level":2,"time":1722426560883,"ns":"sqd:processor","msg":"85675439 / 85676528, rate: 37 blocks/sec, mapping: 377 blocks/sec, 53 items/sec, eta: 30s"}
+{"level":2,"time":1722426565883,"ns":"sqd:processor","msg":"85675619 / 85676528, rate: 37 blocks/sec, mapping: 565 blocks/sec, 90 items/sec, eta: 25s"}
+{"level":2,"time":1722426570884,"ns":"sqd:processor","msg":"85675799 / 85676528, rate: 37 blocks/sec, mapping: 985 blocks/sec, 118 items/sec, eta: 20s"}
+{"level":2,"time":1722426575884,"ns":"sqd:processor","msg":"85675979 / 85676528, rate: 38 blocks/sec, mapping: 908 blocks/sec, 109 items/sec, eta: 15s"}
+Found 1 transfers
+Total amount transferred from 5GYzVsZtDfD7zLbCbXcYk5bofmNfgG7U56dhcyHCWMu4GaNf: 26376.947722 USDC
+Found 1 transfers
+Total amount transferred from 5GYzVsZtDfD7zLbCbXcYk5bofmNfgG7U56dhcyHCWMu4GaNf: 38285.831984 USDC
+{"level":2,"time":1722426580885,"ns":"sqd:processor","msg":"85676159 / 85676548, rate: 38 blocks/sec, mapping: 1042 blocks/sec, 104 items/sec, eta: 10s"}
+{"level":2,"time":1722426585886,"ns":"sqd:processor","msg":"85676339 / 85676548, rate: 38 blocks/sec, mapping: 889 blocks/sec, 89 items/sec, eta: 5s"}
+{"level":2,"time":1722426590886,"ns":"sqd:processor","msg":"85676526 / 85676548, rate: 36 blocks/sec, mapping: 942 blocks/sec, 94 items/sec, eta: 1s"}
+{"level":2,"time":1722426595886,"ns":"sqd:processor","msg":"85676565 / 85676565, rate: 28 blocks/sec, mapping: 149 blocks/sec, 68 items/sec, eta: 0s"}
+{"level":2,"time":1722426600887,"ns":"sqd:processor","msg":"85676570 / 85676570, rate: 20 blocks/sec, mapping: 52 blocks/sec, 52 items/sec, eta: 0s"}
+{"level":2,"time":1722426605887,"ns":"sqd:processor","msg":"85676575 / 85676575, rate: 15 blocks/sec, mapping: 87 blocks/sec, 87 items/sec, eta: 0s"}
+{"level":2,"time":1722426610887,"ns":"sqd:processor","msg":"85676580 / 85676580, rate: 12 blocks/sec, mapping: 22 blocks/sec, 22 items/sec, eta: 0s"}
+{"level":2,"time":1722426615887,"ns":"sqd:processor","msg":"85676585 / 85676585, rate: 9 blocks/sec, mapping: 66 blocks/sec, 66 items/sec, eta: 0s"}
+{"level":2,"time":1722426620888,"ns":"sqd:processor","msg":"85676590 / 85676590, rate: 7 blocks/sec, mapping: 67 blocks/sec, 67 items/sec, eta: 0s"}
+{"level":2,"time":1722426625889,"ns":"sqd:processor","msg":"85676595 / 85676595, rate: 5 blocks/sec, mapping: 47 blocks/sec, 47 items/sec, eta: 0s"}
+{"level":2,"time":1722426630889,"ns":"sqd:processor","msg":"85676600 / 85676600, rate: 3 blocks/sec, mapping: 88 blocks/sec, 88 items/sec, eta: 0s"}
+{"level":2,"time":1722426635889,"ns":"sqd:processor","msg":"85676605 / 85676605, rate: 2 blocks/sec, mapping: 66 blocks/sec, 66 items/sec, eta: 0s"}
+{"level":2,"time":1722426640889,"ns":"sqd:processor","msg":"85676610 / 85676610, rate: 1 blocks/sec, mapping: 57 blocks/sec, 68 items/sec, eta: 0s"}
+{"level":2,"time":1722426645890,"ns":"sqd:processor","msg":"85676615 / 85676615, rate: 1 blocks/sec, mapping: 66 blocks/sec, 66 items/sec, eta: 0s"}
+{"level":2,"time":1722426650890,"ns":"sqd:processor","msg":"85676620 / 85676620, rate: 1 blocks/sec, mapping: 44 blocks/sec, 44 items/sec, eta: 0s"}
+{"level":2,"time":1722426655890,"ns":"sqd:processor","msg":"85676625 / 85676625, rate: 1 blocks/sec, mapping: 57 blocks/sec, 57 items/sec, eta: 0s"}
+{"level":2,"time":1722426660892,"ns":"sqd:processor","msg":"85676630 / 85676630, rate: 1 blocks/sec, mapping: 62 blocks/sec, 62 items/sec, eta: 0s"}
+{"level":2,"time":1722426665893,"ns":"sqd:processor","msg":"85676635 / 85676635, rate: 1 blocks/sec, mapping: 50 blocks/sec, 50 items/sec, eta: 0s"}
+{"level":2,"time":1722426670893,"ns":"sqd:processor","msg":"85676640 / 85676640, rate: 1 blocks/sec, mapping: 57 blocks/sec, 57 items/sec, eta: 0s"}
+{"level":2,"time":1722426675894,"ns":"sqd:processor","msg":"85676645 / 85676645, rate: 1 blocks/sec, mapping: 51 blocks/sec, 51 items/sec, eta: 0s"}
+{"level":2,"time":1722426680894,"ns":"sqd:processor","msg":"85676650 / 85676650, rate: 1 blocks/sec, mapping: 44 blocks/sec, 44 items/sec, eta: 0s"}
+{"level":2,"time":1722426685895,"ns":"sqd:processor","msg":"85676655 / 85676655, rate: 1 blocks/sec, mapping: 43 blocks/sec, 43 items/sec, eta: 0s"}
+{"level":2,"time":1722426690895,"ns":"sqd:processor","msg":"85676660 / 85676660, rate: 1 blocks/sec, mapping: 43 blocks/sec, 43 items/sec, eta: 0s"}
+{"level":2,"time":1722426695895,"ns":"sqd:processor","msg":"85676665 / 85676665, rate: 1 blocks/sec, mapping: 55 blocks/sec, 55 items/sec, eta: 0s"}
+{"level":2,"time":1722426700895,"ns":"sqd:processor","msg":"85676670 / 85676670, rate: 1 blocks/sec, mapping: 54 blocks/sec, 54 items/sec, eta: 0s"}
+{"level":2,"time":1722426705897,"ns":"sqd:processor","msg":"85676675 / 85676675, rate: 1 blocks/sec, mapping: 61 blocks/sec, 61 items/sec, eta: 0s"}
+{"level":2,"time":1722426710897,"ns":"sqd:processor","msg":"85676680 / 85676680, rate: 1 blocks/sec, mapping: 50 blocks/sec, 50 items/sec, eta: 0s"}
+{"level":2,"time":1722426715898,"ns":"sqd:processor","msg":"85676685 / 85676685, rate: 1 blocks/sec, mapping: 53 blocks/sec, 53 items/sec, eta: 0s"}
+{"level":2,"time":1722426720898,"ns":"sqd:processor","msg":"85676690 / 85676690, rate: 1 blocks/sec, mapping: 61 blocks/sec, 61 items/sec, eta: 0s"}
+{"level":2,"time":1722426725899,"ns":"sqd:processor","msg":"85676695 / 85676695, rate: 1 blocks/sec, mapping: 56 blocks/sec, 56 items/sec, eta: 0s"}
+{"level":2,"time":1722426730899,"ns":"sqd:processor","msg":"85676700 / 85676700, rate: 1 blocks/sec, mapping: 64 blocks/sec, 64 items/sec, eta: 0s"}
+{"level":2,"time":1722426735900,"ns":"sqd:processor","msg":"85676705 / 85676705, rate: 1 blocks/sec, mapping: 60 blocks/sec, 60 items/sec, eta: 0s"}
+{"level":2,"time":1722426740900,"ns":"sqd:processor","msg":"85676710 / 85676710, rate: 1 blocks/sec, mapping: 55 blocks/sec, 55 items/sec, eta: 0s"}
+{"level":2,"time":1722426745900,"ns":"sqd:processor","msg":"85676715 / 85676715, rate: 1 blocks/sec, mapping: 54 blocks/sec, 54 items/sec, eta: 0s"}
+{"level":2,"time":1722426750900,"ns":"sqd:processor","msg":"85676720 / 85676720, rate: 1 blocks/sec, mapping: 44 blocks/sec, 44 items/sec, eta: 0s"}
+{"level":2,"time":1722426755902,"ns":"sqd:processor","msg":"85676725 / 85676725, rate: 1 blocks/sec, mapping: 51 blocks/sec, 51 items/sec, eta: 0s"}
+{"level":2,"time":1722426760903,"ns":"sqd:processor","msg":"85676730 / 85676730, rate: 1 blocks/sec, mapping: 36 blocks/sec, 36 items/sec, eta: 0s"}
+{"level":2,"time":1722426765904,"ns":"sqd:processor","msg":"85676735 / 85676735, rate: 1 blocks/sec, mapping: 48 blocks/sec, 48 items/sec, eta: 0s"}
+{"level":2,"time":1722426770904,"ns":"sqd:processor","msg":"85676740 / 85676740, rate: 1 blocks/sec, mapping: 43 blocks/sec, 43 items/sec, eta: 0s"}
+{"level":2,"time":1722426775905,"ns":"sqd:processor","msg":"85676745 / 85676745, rate: 1 blocks/sec, mapping: 47 blocks/sec, 47 items/sec, eta: 0s"}
+{"level":2,"time":1722426780905,"ns":"sqd:processor","msg":"85676750 / 85676750, rate: 1 blocks/sec, mapping: 49 blocks/sec, 49 items/sec, eta: 0s"}
+{"level":2,"time":1722426785906,"ns":"sqd:processor","msg":"85676755 / 85676755, rate: 1 blocks/sec, mapping: 51 blocks/sec, 51 items/sec, eta: 0s"}
+{"level":2,"time":1722426790907,"ns":"sqd:processor","msg":"85676760 / 85676760, rate: 1 blocks/sec, mapping: 48 blocks/sec, 48 items/sec, eta: 0s"}
+{"level":2,"time":1722426795907,"ns":"sqd:processor","msg":"85676765 / 85676765, rate: 1 blocks/sec, mapping: 59 blocks/sec, 59 items/sec, eta: 0s"}
+{"level":2,"time":1722426800908,"ns":"sqd:processor","msg":"85676770 / 85676770, rate: 1 blocks/sec, mapping: 55 blocks/sec, 55 items/sec, eta: 0s"}
+{"level":2,"time":1722426805909,"ns":"sqd:processor","msg":"85676775 / 85676775, rate: 1 blocks/sec, mapping: 70 blocks/sec, 70 items/sec, eta: 0s"}
+{"level":2,"time":1722426810909,"ns":"sqd:processor","msg":"85676780 / 85676780, rate: 1 blocks/sec, mapping: 81 blocks/sec, 81 items/sec, eta: 0s"}
+{"level":2,"time":1722426815909,"ns":"sqd:processor","msg":"85676785 / 85676785, rate: 1 blocks/sec, mapping: 73 blocks/sec, 73 items/sec, eta: 0s"}
+{"level":2,"time":1722426820909,"ns":"sqd:processor","msg":"85676790 / 85676790, rate: 1 blocks/sec, mapping: 60 blocks/sec, 72 items/sec, eta: 0s"}
+{"level":2,"time":1722426825909,"ns":"sqd:processor","msg":"85676795 / 85676795, rate: 1 blocks/sec, mapping: 58 blocks/sec, 70 items/sec, eta: 0s"}
+{"level":2,"time":1722426830909,"ns":"sqd:processor","msg":"85676800 / 85676800, rate: 1 blocks/sec, mapping: 73 blocks/sec, 73 items/sec, eta: 0s"}
+{"level":2,"time":1722426835910,"ns":"sqd:processor","msg":"85676805 / 85676805, rate: 1 blocks/sec, mapping: 41 blocks/sec, 41 items/sec, eta: 0s"}
+{"level":2,"time":1722426840911,"ns":"sqd:processor","msg":"85676810 / 85676810, rate: 1 blocks/sec, mapping: 37 blocks/sec, 37 items/sec, eta: 0s"}
+{"level":2,"time":1722426845911,"ns":"sqd:processor","msg":"85676815 / 85676815, rate: 1 blocks/sec, mapping: 76 blocks/sec, 76 items/sec, eta: 0s"}
+{"level":2,"time":1722426850911,"ns":"sqd:processor","msg":"85676820 / 85676820, rate: 1 blocks/sec, mapping: 90 blocks/sec, 90 items/sec, eta: 0s"}
+{"level":2,"time":1722426855910,"ns":"sqd:processor","msg":"85676825 / 85676825, rate: 1 blocks/sec, mapping: 85 blocks/sec, 85 items/sec, eta: 0s"}
+{"level":2,"time":1722426860911,"ns":"sqd:processor","msg":"85676830 / 85676830, rate: 1 blocks/sec, mapping: 85 blocks/sec, 85 items/sec, eta: 0s"}
+{"level":2,"time":1722426865913,"ns":"sqd:processor","msg":"85676835 / 85676835, rate: 1 blocks/sec, mapping: 72 blocks/sec, 72 items/sec, eta: 0s"}
+{"level":2,"time":1722426870913,"ns":"sqd:processor","msg":"85676840 / 85676840, rate: 1 blocks/sec, mapping: 88 blocks/sec, 88 items/sec, eta: 0s"}
+{"level":2,"time":1722426875915,"ns":"sqd:processor","msg":"85676845 / 85676845, rate: 1 blocks/sec, mapping: 75 blocks/sec, 75 items/sec, eta: 0s"}
+{"level":2,"time":1722426880916,"ns":"sqd:processor","msg":"85676850 / 85676850, rate: 1 blocks/sec, mapping: 77 blocks/sec, 77 items/sec, eta: 0s"}
+{"level":2,"time":1722426885917,"ns":"sqd:processor","msg":"85676855 / 85676855, rate: 1 blocks/sec, mapping: 79 blocks/sec, 79 items/sec, eta: 0s"}
+{"level":2,"time":1722426890918,"ns":"sqd:processor","msg":"85676860 / 85676860, rate: 1 blocks/sec, mapping: 63 blocks/sec, 63 items/sec, eta: 0s"}
+{"level":2,"time":1722426895918,"ns":"sqd:processor","msg":"85676865 / 85676865, rate: 1 blocks/sec, mapping: 35 blocks/sec, 35 items/sec, eta: 0s"}
+{"level":2,"time":1722426900918,"ns":"sqd:processor","msg":"85676870 / 85676870, rate: 1 blocks/sec, mapping: 70 blocks/sec, 70 items/sec, eta: 0s"}
+{"level":2,"time":1722426905919,"ns":"sqd:processor","msg":"85676875 / 85676875, rate: 1 blocks/sec, mapping: 74 blocks/sec, 74 items/sec, eta: 0s"}
+{"level":2,"time":1722426910920,"ns":"sqd:processor","msg":"85676880 / 85676880, rate: 1 blocks/sec, mapping: 57 blocks/sec, 57 items/sec, eta: 0s"}
+{"level":2,"time":1722426915920,"ns":"sqd:processor","msg":"85676885 / 85676885, rate: 1 blocks/sec, mapping: 78 blocks/sec, 78 items/sec, eta: 0s"}
+{"level":2,"time":1722426920921,"ns":"sqd:processor","msg":"85676890 / 85676890, rate: 1 blocks/sec, mapping: 86 blocks/sec, 86 items/sec, eta: 0s"}
+{"level":2,"time":1722426925921,"ns":"sqd:processor","msg":"85676895 / 85676895, rate: 1 blocks/sec, mapping: 92 blocks/sec, 92 items/sec, eta: 0s"}
+{"level":2,"time":1722426930921,"ns":"sqd:processor","msg":"85676900 / 85676900, rate: 1 blocks/sec, mapping: 81 blocks/sec, 81 items/sec, eta: 0s"}
+{"level":2,"time":1722426935921,"ns":"sqd:processor","msg":"85676905 / 85676905, rate: 1 blocks/sec, mapping: 70 blocks/sec, 70 items/sec, eta: 0s"}
+{"level":2,"time":1722426940922,"ns":"sqd:processor","msg":"85676910 / 85676910, rate: 1 blocks/sec, mapping: 39 blocks/sec, 47 items/sec, eta: 0s"}
+{"level":2,"time":1722426945923,"ns":"sqd:processor","msg":"85676915 / 85676915, rate: 1 blocks/sec, mapping: 65 blocks/sec, 65 items/sec, eta: 0s"}
+{"level":2,"time":1722426950923,"ns":"sqd:processor","msg":"85676920 / 85676920, rate: 1 blocks/sec, mapping: 68 blocks/sec, 68 items/sec, eta: 0s"}
+{"level":2,"time":1722426955924,"ns":"sqd:processor","msg":"85676925 / 85676925, rate: 1 blocks/sec, mapping: 56 blocks/sec, 56 items/sec, eta: 0s"}
+{"level":2,"time":1722426960925,"ns":"sqd:processor","msg":"85676930 / 85676930, rate: 1 blocks/sec, mapping: 31 blocks/sec, 31 items/sec, eta: 0s"}
+{"level":2,"time":1722426965924,"ns":"sqd:processor","msg":"85676935 / 85676935, rate: 1 blocks/sec, mapping: 46 blocks/sec, 55 items/sec, eta: 0s"}
+{"level":2,"time":1722426970924,"ns":"sqd:processor","msg":"85676940 / 85676940, rate: 1 blocks/sec, mapping: 54 blocks/sec, 54 items/sec, eta: 0s"}
+{"level":2,"time":1722426975925,"ns":"sqd:processor","msg":"85676945 / 85676945, rate: 1 blocks/sec, mapping: 47 blocks/sec, 47 items/sec, eta: 0s"}
+{"level":2,"time":1722426980925,"ns":"sqd:processor","msg":"85676950 / 85676950, rate: 1 blocks/sec, mapping: 66 blocks/sec, 66 items/sec, eta: 0s"}
+{"level":2,"time":1722426985925,"ns":"sqd:processor","msg":"85676955 / 85676955, rate: 1 blocks/sec, mapping: 62 blocks/sec, 62 items/sec, eta: 0s"}
+{"level":2,"time":1722426990925,"ns":"sqd:processor","msg":"85676960 / 85676960, rate: 1 blocks/sec, mapping: 51 blocks/sec, 51 items/sec, eta: 0s"}
+{"level":2,"time":1722426995926,"ns":"sqd:processor","msg":"85676965 / 85676965, rate: 1 blocks/sec, mapping: 55 blocks/sec, 55 items/sec, eta: 0s"}
+{"level":2,"time":1722427000925,"ns":"sqd:processor","msg":"85676970 / 85676970, rate: 1 blocks/sec, mapping: 44 blocks/sec, 44 items/sec, eta: 0s"}
+{"level":2,"time":1722427005926,"ns":"sqd:processor","msg":"85676975 / 85676975, rate: 1 blocks/sec, mapping: 45 blocks/sec, 45 items/sec, eta: 0s"}
+{"level":2,"time":1722427010927,"ns":"sqd:processor","msg":"85676980 / 85676980, rate: 1 blocks/sec, mapping: 62 blocks/sec, 62 items/sec, eta: 0s"}
+{"level":2,"time":1722427015929,"ns":"sqd:processor","msg":"85676985 / 85676985, rate: 1 blocks/sec, mapping: 50 blocks/sec, 50 items/sec, eta: 0s"}
+{"level":2,"time":1722427020930,"ns":"sqd:processor","msg":"85676990 / 85676990, rate: 1 blocks/sec, mapping: 50 blocks/sec, 50 items/sec, eta: 0s"}
+{"level":2,"time":1722427025930,"ns":"sqd:processor","msg":"85676995 / 85676995, rate: 1 blocks/sec, mapping: 52 blocks/sec, 52 items/sec, eta: 0s"}
+{"level":2,"time":1722427030931,"ns":"sqd:processor","msg":"85677000 / 85677000, rate: 1 blocks/sec, mapping: 58 blocks/sec, 58 items/sec, eta: 0s"}
+{"level":2,"time":1722427035932,"ns":"sqd:processor","msg":"85677005 / 85677005, rate: 1 blocks/sec, mapping: 66 blocks/sec, 66 items/sec, eta: 0s"}
+{"level":2,"time":1722427040933,"ns":"sqd:processor","msg":"85677010 / 85677010, rate: 1 blocks/sec, mapping: 64 blocks/sec, 64 items/sec, eta: 0s"}
+{"level":2,"time":1722427045934,"ns":"sqd:processor","msg":"85677015 / 85677015, rate: 1 blocks/sec, mapping: 47 blocks/sec, 56 items/sec, eta: 0s"}
+{"level":2,"time":1722427050935,"ns":"sqd:processor","msg":"85677020 / 85677020, rate: 1 blocks/sec, mapping: 60 blocks/sec, 60 items/sec, eta: 0s"}
+{"level":2,"time":1722427055935,"ns":"sqd:processor","msg":"85677025 / 85677025, rate: 1 blocks/sec, mapping: 33 blocks/sec, 33 items/sec, eta: 0s"}
